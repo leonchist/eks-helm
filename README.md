@@ -32,4 +32,4 @@ long that these tools are open / free sourced and the process of using them is r
 environment up and running, and how to make sure it work
 
 # Solution
-Follow the document: 
+Follow the document: https://docs.google.com/document/d/1bfJIlbUShVt3wPaMev_H6lKe0p0X7ofJqvFP8VVcEl0/edit?usp=sharing
