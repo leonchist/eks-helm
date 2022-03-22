@@ -1,3 +1,6 @@
+# Solution
+Follow the document: https://docs.google.com/document/d/1bfJIlbUShVt3wPaMev_H6lKe0p0X7ofJqvFP8VVcEl0/edit?usp=sharing
+
 # Kubernetes assignment
 
 A script or verbal document that satisfies the functional requirements:
@@ -30,6 +33,3 @@ long that these tools are open / free sourced and the process of using them is r
 - Plan what needs to be done and don’t overwork the solution
 - If you prefer, write down a step-by-step description of what to do in order to get the
 environment up and running, and how to make sure it work
-
-# Solution
-Follow the document: https://docs.google.com/document/d/1bfJIlbUShVt3wPaMev_H6lKe0p0X7ofJqvFP8VVcEl0/edit?usp=sharing
