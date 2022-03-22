@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+  {
+    "Action": "sts:AssumeRoleWithWebIdentity",
+    "Effect": "Allow",
+    "Condition": {
+      "StringEquals": {
+        "oidc.eks.eu-west-1.amazonaws.com/id/93165AF3DD4D01BA2952F6CCF86C151D:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller",
+        "oidc.eks.eu-west-1.amazonaws.com/id/93165AF3DD4D01BA2952F6CCF86C151D:aud": "sts.amazonaws.com"
+      }
+    },
+    "Principal": {
+      "Federated": "arn:aws:iam::158568143536:oidc-provider/oidc.eks.eu-west-1.amazonaws.com/id/93165AF3DD4D01BA2952F6CCF86C151D"
+    }
+  },
+  {
+    "Effect": "Allow",
+    "Principal": {
+      "Federated": "arn:aws:iam::158568143536:oidc-provider/oidc.eks.eu-west-1.amazonaws.com/id/93165AF3DD4D01BA2952F6CCF86C151D"
+    },
+    "Action": "sts:AssumeRoleWithWebIdentity",
+    "Condition": {
+      "StringEquals": {
+        "oidc.eks.eu-west-1.amazonaws.com/id/93165AF3DD4D01BA2952F6CCF86C151D:sub": "system:serviceaccount:grafana:iamproxy-service-account"
+      }
+    }
+  },
+  {
+    "Effect": "Allow",
+    "Principal": {
+      "Federated": "arn:aws:iam::158568143536:oidc-provider/oidc.eks.eu-west-1.amazonaws.com/id/93165AF3DD4D01BA2952F6CCF86C151D"
+    },
+    "Action": "sts:AssumeRoleWithWebIdentity",
+    "Condition": {
+      "StringEquals": {
+        "oidc.eks.eu-west-1.amazonaws.com/id/93165AF3DD4D01BA2952F6CCF86C151D:sub": "system:serviceaccount:prometheus:iamproxy-service-account"
+      }
+    }
+  }
+]
+}
