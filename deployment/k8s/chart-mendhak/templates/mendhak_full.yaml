@@ -1,0 +1,81 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mendhak
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  namespace: mendhak
+  name: mem-limit-mendhak
+spec:
+  limits:
+  - default:
+      cpu:    {{ .Values.container.cpu }}
+      memory: {{ .Values.container.memory }}
+    defaultRequest:
+      cpu:    {{ .Values.container.cpurequest }}
+      memory: {{ .Values.container.memoryrequest }}
+    type: Container
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: mendhak
+  name: deployment-mendhak
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app-mendhak
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: app-mendhak
+    spec:
+      containers:
+      - image: 158568143536.dkr.ecr.eu-west-1.amazonaws.com/balance:latest
+        imagePullPolicy: Always
+        name: app-mendhak
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: mendhak
+  name: service-mendhak
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: app-mendhak
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: mendhak
+  name: ingress-mendhak
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: service-mendhak
+              port:
+                number: 80

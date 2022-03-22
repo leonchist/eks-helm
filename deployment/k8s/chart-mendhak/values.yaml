@@ -1,0 +1,7 @@
+container:
+  cpu: 1
+  cpurequest: 0.5
+  memory: 512Mi
+  memoryrequest: 256Mi
+  
+replicas: 3
