@@ -5,3 +5,4 @@ container:
   memoryrequest: 256Mi
   
 replicas: 3
+image: 158568143536.dkr.ecr.eu-west-1.amazonaws.com/balance:latest

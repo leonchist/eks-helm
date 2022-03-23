@@ -35,7 +35,7 @@ spec:
         app.kubernetes.io/name: app-mendhak
     spec:
       containers:
-      - image: 158568143536.dkr.ecr.eu-west-1.amazonaws.com/balance:latest
+      - image: {{ .Values.image }}
         imagePullPolicy: Always
         name: app-mendhak
         livenessProbe:
