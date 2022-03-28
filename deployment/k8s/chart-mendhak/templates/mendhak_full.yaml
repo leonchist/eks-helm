@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: mendhak
+  name: {{ .Release.Namespace }}
 ---
 apiVersion: v1
 kind: LimitRange
 metadata:
-  namespace: mendhak
+  namespace: {{ .Release.Namespace }}
   name: mem-limit-mendhak
 spec:
   limits:
@@ -22,7 +22,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: mendhak
+  namespace: {{ .Release.Namespace }}
   name: deployment-mendhak
 spec:
   selector:
@@ -45,24 +45,10 @@ spec:
         ports:
         - containerPort: 80
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: mendhak
-  name: service-mendhak
-spec:
-  ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-  type: NodePort
-  selector:
-    app.kubernetes.io/name: app-mendhak
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: mendhak
+  namespace: {{ .Release.Namespace }}
   name: ingress-mendhak
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
