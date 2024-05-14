@@ -1,1 +1,2 @@
-export {};
+
+export * as authValidator from "./auth.validator";
